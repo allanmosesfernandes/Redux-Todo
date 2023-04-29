@@ -18,6 +18,15 @@ export const todoSlice = createSlice({
             };
             state.push(todo);
         },
+
+        toggleToDo: (state, action ) => {
+            const index = state.findIndex((todo) => todo.id === action.payload.id);
+            state[index].completed = action.payload.completed;
+        }, 
+
+        deleteToDo : (state, action) => {
+            return state.filter((todo) => todo.id !== action.payload.id );
+        }
     }
 })
 
@@ -27,6 +36,6 @@ the createSlice function creates actions based on
 the reducer names 
 */
 
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, toggleToDo, deleteToDo } = todoSlice.actions;
 
 export default todoSlice.reducer;
